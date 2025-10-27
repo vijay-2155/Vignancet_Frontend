@@ -1,0 +1,14 @@
+.navbar{
+    display: flex;
+    width: 100%;
+    position: fixed;
+    padding: 10px 20px;
+    left: 0;
+    border-bottom: 1px solid black;
+    top: 0;
+}
+
+.head h3{
+    font-weight: 500;
+    font-size: 20px;
+}

@@ -1,0 +1,79 @@
+.login-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-container {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, #e8ffd9, #d5ffc4);
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  width: 320px;
+  border: 1px solid #ccc;
+}
+
+/* ===== Header ===== */
+.login-header {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.login-header .inactive {
+  color: #888;
+  font-weight: 500;
+}
+
+.login-header .active {
+  color: #000;
+  font-weight: 600;
+}
+
+/* ===== Form ===== */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-form label {
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.login-form input,
+.login-form select {
+  border: none;
+  border-bottom: 2px solid #000;
+  background: transparent;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.login-form button {
+  background: #4bf063;
+  color: #000;
+  border: none;
+  padding: 0.6rem 0;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.login-form button:hover {
+  background: #39d554;
+  transform: translateY(-1px);
+}

@@ -1,0 +1,24 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom right, #fff6dc, #f9d67a);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.ellipse {
+  position: absolute;
+  right: -100px;
+  bottom: -150px;
+  width: 400px;
+  height: 400px;
+  background: #b3fff3;
+  filter: blur(160px);
+  z-index: 0;
+}
