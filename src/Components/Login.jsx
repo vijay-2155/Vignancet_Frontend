@@ -3,6 +3,9 @@ import vignansLogo from '../assets/images.png';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+
+  const navigate = useNavigate();
+
   const [isAdmin, setIsAdmin] = useState(false);
   const [formData, setFormData] = useState({
     hallticket: '',
@@ -10,8 +13,6 @@ export default function Login() {
     password: ''
   });
   
-  const navigate = useNavigate();
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -20,8 +21,10 @@ export default function Login() {
     e.preventDefault();
     if (isAdmin) {
       console.log('Admin Login:', formData.username, formData.password);
+      navigate('/adminDashboard');
     } else {
       console.log('Student Login:', formData.hallticket, formData.password);
+      navigate('/Instructions');
     }
     
   };
