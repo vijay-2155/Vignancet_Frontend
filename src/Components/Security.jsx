@@ -1,4 +1,3 @@
-// Security.jsx
 import { useEffect, useState } from 'react';
 
 export const useSecurity = () => {
@@ -10,13 +9,11 @@ export const useSecurity = () => {
   
   const MAX_VIOLATIONS = 5;
 
-  // Show custom alert
   const showAlert = (message, type = 'warning') => {
     setAlert({ message, type });
     setTimeout(() => setAlert(null), 4000);
   };
 
-  // Open in new window and request fullscreen
   useEffect(() => {
     const isExamWindow = window.name === 'examWindow';
     
@@ -74,7 +71,7 @@ export const useSecurity = () => {
     if (!examStarted || examTerminated) return;
     
     setViolations(prev => {
-      const newCount = prev + 1;
+      const newCount =  prev+1;
       
       if (newCount >= MAX_VIOLATIONS) {
         setExamTerminated(true);
@@ -152,8 +149,8 @@ export const useSecurity = () => {
           return false;
         }
       }
-
-      // Ctrl+Shift combinations
+      
+      // Ctrl/Cmd + Shift combinations
       if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
         e.preventDefault();
         e.stopPropagation();

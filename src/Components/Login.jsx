@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import vignansLogo from '../assets/images.png'; // import your local logo
+import { useState } from 'react';
+import vignansLogo from '../assets/images.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+
   const [isAdmin, setIsAdmin] = useState(false);
   const [formData, setFormData] = useState({
     hallticket: '',
     username: '',
     password: ''
   });
+  
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,16 +21,21 @@ export default function Login() {
     e.preventDefault();
     if (isAdmin) {
       console.log('Admin Login:', formData.username, formData.password);
+      // TODO : do API call here
+      navigate('/AdminDashboard')
     } else {
       console.log('Student Login:', formData.hallticket, formData.password);
+      // TODO : do API call here
+      navigate('/InstructionsScreen');
     }
+    
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      {/* Glass Effect Form */}
+      
       <div className="backdrop-blur-md bg-white/50 border border-white/30 shadow-2xl rounded-2xl p-8 w-full max-w-md">
-        {/* Logo inside form */}
+        
         <div className="flex justify-center mb-6">
           <img
             src={vignansLogo}
@@ -35,7 +44,6 @@ export default function Login() {
           />
         </div>
 
-        {/* Toggle Buttons */}
         <div className="flex justify-center mb-6">
           <button
             className={`px-4 py-2 rounded-l-lg ${
@@ -64,7 +72,6 @@ export default function Login() {
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Student Fields */}
           {!isAdmin && (
             <div>
               <label className="block text-sm text-black mb-1">Hall Ticket</label>
@@ -79,8 +86,6 @@ export default function Login() {
               />
             </div>
           )}
-
-          {/* Admin Fields */}
           {isAdmin && (
             <div>
               <label className="block text-sm text-black mb-1">Username</label>
@@ -96,7 +101,6 @@ export default function Login() {
             </div>
           )}
 
-          {/* Password Field */}
           <div>
             <label className="block text-sm text-black mb-1">Password</label>
             <input
