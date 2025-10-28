@@ -8,7 +8,6 @@ export default function Login() {
 
   const [isAdmin, setIsAdmin] = useState(false);
   const [formData, setFormData] = useState({
-    hallticket: '',
     username: '',
     password: ''
   });
@@ -23,7 +22,7 @@ export default function Login() {
       console.log('Admin Login:', formData.username, formData.password);
       navigate('/adminDashboard');
     } else {
-      console.log('Student Login:', formData.hallticket, formData.password);
+      console.log('Student Login:', formData.username, formData.password);
       navigate('/Instructions');
     }
     
@@ -72,13 +71,13 @@ export default function Login() {
         <form onSubmit={handleSubmit} className="space-y-4">
           {!isAdmin && (
             <div>
-              <label className="block text-sm text-black mb-1">Hall Ticket</label>
+              <label className="block text-sm text-black mb-1">User Name</label>
               <input
                 type="text"
-                name="hallticket"
-                value={formData.hallticket}
+                name="username"
+                value={formData.username}
                 onChange={handleChange}
-                placeholder="Enter Hall Ticket"
+                placeholder="Enter User Name"
                 className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
                 required
               />

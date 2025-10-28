@@ -15,21 +15,12 @@ export const useSecurity = () => {
   };
 
   useEffect(() => {
+    // Only initialize security when running inside the dedicated exam window.
+    // The exam window should be opened from the Instructions page (user click).
     const isExamWindow = window.name === 'examWindow';
-    
-    if (!isExamWindow) {
-      const examWindow = window.open(
-        window.location.href,
-        'examWindow',
-        'width=' + screen.width + ',height=' + screen.height + ',fullscreen=yes'
-      );
-      
-      if (examWindow) {
-        window.close();
-      } else {
-        showAlert('Please allow popups for this site to start the exam.', 'error');
-      }
-    } else {
+
+    if (isExamWindow) {
+      // Give the page a moment to settle, then request fullscreen automatically.
       setTimeout(() => {
         requestFullscreen();
       }, 500);
@@ -66,7 +57,6 @@ export const useSecurity = () => {
     setExamStarted(true);
   };
 
-  // Function to add violation
   const addViolation = (message) => {
     if (!examStarted || examTerminated) return;
     
@@ -230,11 +220,10 @@ export const useSecurity = () => {
 
     const devToolsInterval = setInterval(detectDevTools, 2000);
 
-    // Add event listeners with capture phase to catch events early
-    document.addEventListener('contextmenu', blockContextMenu, true);
-    document.addEventListener('keydown', blockKeys, { capture: true, passive: false });
-    document.addEventListener('keyup', blockKeys, { capture: true, passive: false });
-    document.addEventListener('keypress', blockKeys, { capture: true, passive: false });
+  // Add event listeners with capture phase to catch events early
+  // Only listen to keydown to avoid duplicate handling across keydown/keyup/keypress
+  document.addEventListener('contextmenu', blockContextMenu, true);
+  document.addEventListener('keydown', blockKeys, { capture: true, passive: false });
     window.addEventListener('blur', handleBlur);
     window.addEventListener('focus', handleFocus);
     document.addEventListener('visibilitychange', handleVisibilityChange);
@@ -244,10 +233,8 @@ export const useSecurity = () => {
     document.addEventListener('cut', disableCopy);
 
     return () => {
-      document.removeEventListener('contextmenu', blockContextMenu, true);
-      document.removeEventListener('keydown', blockKeys, true);
-      document.removeEventListener('keyup', blockKeys, true);
-      document.removeEventListener('keypress', blockKeys, true);
+  document.removeEventListener('contextmenu', blockContextMenu, true);
+  document.removeEventListener('keydown', blockKeys, true);
       window.removeEventListener('blur', handleBlur);
       window.removeEventListener('focus', handleFocus);
       document.removeEventListener('visibilitychange', handleVisibilityChange);

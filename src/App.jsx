@@ -7,6 +7,8 @@ import Instructions from './Components/Instructions';
 import AddQuestion from './Components/AddQuestion';
 import Paper from './Components/Paper';
 import Standings from './Components/Standings';
+import SecurityRoute from './Components/SecurityRoute';
+import ExamPortalApp from './ExamPortal/App';
 function App() {
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -19,10 +21,11 @@ function App() {
           <Route path='/addQuestion' element={<AddQuestion />} />
           <Route path='/setPaper' element={<Paper />} />
           <Route path='/getStats' element={<Standings />} />
+          <Route path='/exam' element={<SecurityRoute><ExamPortalApp/></SecurityRoute>} />
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  );  
 }
 
 export default App;
