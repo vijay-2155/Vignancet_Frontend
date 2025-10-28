@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import vignansLogo from '../assets/images.png'; // import your local logo
 
-export default function Login() {
+export default function Login({ onLogin }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [formData, setFormData] = useState({
     hallticket: '',
@@ -17,8 +17,12 @@ export default function Login() {
     e.preventDefault();
     if (isAdmin) {
       console.log('Admin Login:', formData.username, formData.password);
+      // simulate successful login
+      if (onLogin) onLogin({ role: 'admin', name: formData.username });
     } else {
       console.log('Student Login:', formData.hallticket, formData.password);
+      // simulate successful login
+      if (onLogin) onLogin({ role: 'student', name: formData.hallticket });
     }
   };
 
